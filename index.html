@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KINA & KANO FRAGRANCES | Luxury Perfume Oils | EN/PT</title>
+	  <link rel="stylesheet"  href="styles.css">
+</head>
+<body>
+<div class="bg-aura"></div>
+<div class="container">
+    <!-- LANGUAGE SWITCHER -->
+    <div class="lang-bar">
+        <button class="lang-btn active" data-lang="en">🇬🇧 ENGLISH</button>
+        <button class="lang-btn" data-lang="pt">🇵🇹 PORTUGUÊS</button>
+    </div>
+
+    <!-- LOGO ANIMATION -->
+    <div class="hero-brand">
+        <div class="kinetic-logo linked" id="kineticLogo">
+            <div class="k-animation">
+                <span class="k-letter">K</span>
+                <span class="k-letter">K</span>
+            </div>
+            <div class="full-name" id="brandFullName">KINA &amp; KANO FRAGRANCES</div>
+            <div class="tagline" id="globalTagline">ELEVATE YOUR SPACE • ROLL-ON LUXURY</div>
+        </div>
+    </div>
+
+    <!-- IMAGE GALLERY SECTION (showcasing product visuals) -->
+    <div class="gallery-section">
+        <div class="gallery-title" id="galleryTitle">📸 PERFUME GALLERY</div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+
+    <!-- PRODUCT LISTS (MALE / FEMALE / UNISEX) -->
+    <div>
+        <div class="section-title" id="maleSectionTitle">⚡ MASCULINE COLLECTION</div>
+        <div class="frag-grid" id="maleGrid"></div>
+
+        <div class="section-title" id="femaleSectionTitle">🌸 FEMININE COLLECTION</div>
+        <div class="frag-grid" id="femaleGrid"></div>
+
+        <div class="section-title" id="unisexSectionTitle">🌀 UNISEX & NICHE</div>
+        <div class="frag-grid" id="unisexGrid"></div>
+    </div>
+
+    <div style="text-align: center;">
+        <span class="product-type" id="globalProductBadge">✨ Premium oil roll-on • 50ml • Inspired by VERSACE-EROS ✨</span>
+    </div>
+
+    <div class="contact-section">
+        <button class="whatsapp-btn" id="contactWhatsappBtn">
+            <span>📱</span> <span id="contactBtnText">CONTACT US ON WHATSAPP</span>
+        </button>
+    </div>
+    <footer id="footerText">© KINA & KANO FRAGRANCES — Inspired luxury. Paraben-free formula with hyaluronate & aloe vera.<br>Tap contact to order or inquire.</footer>
+</div>
+
+<!-- MODAL LIGHTBOX -->
+<div id="imageModal" class="modal">
+    <span class="close-modal">&times;</span>
+    <img class="modal-img" id="modalImg" src="">
+</div>
+
+<script>
+    // --------------------------------------------------------------
+    // 1. PERFUME DATA (same as before: male, female, unisex)
+    const maleFragrancesRaw = [
+        "AZARRO - WANTED", "ARMANI - AQUA DE GIO", "ARMANI - ANTIQUA GARDENIA",
+        "ARMANI - BLACK CODE", "ANTONIO BANDERAS - GOLDEN SECRET", "BVLGARI - AQUA",
+        "BVLGARI - MAN IN BLACK", "CAROLINA HERRERA - 212 VIP", "CAROLINA HERRERA - 212 VIP BLACK",
+        "CAROLINA HERRERA - BAD BOY", "CHRISTIAN DIOR - SAUVAGE", "CREED - AVENTUS",
+        "DIESEL - ONLY THE BRAVE", "DUNHILL - DESIRE BLUE", "DUNHILL - DESIRE RED",
+        "D&G - LIGHT BLUE", "HUGO BOSS - HUGO", "HERMES - TERRE D'HERMES",
+        "PACO RABANNE - 1 MILLION", "PACO RABANNE - INVICTUS", "PACO RABANNE - BLACK XS",
+        "MICHAEL KORS - EXTREME BLUE", "LATTAFA - QUEED INTENSE", "TOM FORD - TOBACCO VANILLE",
+        "ISSEY MIYAKE - L'EAU D'ISSEY POUR HOMME", "JPG - SCANDAL POUR HOMME", "JPG - LE MALE",
+        "VERSACE - EROS", "VERSACE - DYLAN BLUE", "YSL - LA NUIT", "WHITE OUD"
+    ];
+    const uniqueMale = [...new Map(maleFragrancesRaw.map(item => [item.toLowerCase(), item])).values()];
+    const femaleFragrances = [
+        "AZARRO - WANTED GIRL", "ARMANI - SI", "BURBERRY - GODDESS", "BRITNEY SPEARS - FANTASY",
+        "CAROLINA HERRERA - GOOD GIRL", "CAROLINA HERRERA - 212 VIP ROSE", "CHANEL - COCO MADEMOISELLE",
+        "CHRISTIAN DIOR - J'ADORE", "DKNY - BE DELICIOUS", "ESCADA - CHERRY IN THE AIR",
+        "JPG - SCANDAL", "LANCOME - LA VIE EST BELLE", "PACO RABANNE - OLYMPEA",
+        "PACO RABANNE - LADY MILLION", "YSL - BLACK OPIUM"
+    ];
+    const unisexFragrances = [
+        "CHRISTIAN DIOR - TOBACOLOR", "INITIO - OUD OF GREATNESS", "KAYALI - EDEN JUICY APPLE",
+        "KILIAN - BLACK PHANTOM", "MAISON CRIVELI - HIBISCUS MAHAJAD", "M.F.K - BACCARAT ROUGE 540",
+        "MFK - OUD SATIN MOOD", "MAISON MARTIN - REPLICA JAZZ CLUB", "WHITE OUD", "TOM FORD TOBACCO VANILLE"
+    ];
+    // 2. GALLERY IMAGES - Using actual perfume product images
+    // You need to place your perfume images in an "images" folder (or adjust paths accordingly)
+    // Replace these paths with your actual image file locations
+    const galleryItems = [
+        { 
+            image: "KANO-PAI/WhatsAppImage1.jpeg",
+            nameEn: "Versace Eros", 
+            namePt: "Versace Eros",
+            descriptionEn: "Masculine, aromatic, seductive",
+            descriptionPt: "Masculino, aromático, sedutor"
+        },
+        { 
+            image: "KANO-PAI/WhatsAppImage2.jpeg",
+            nameEn: "Christian Dior Sauvage", 
+            namePt: "Christian Dior Sauvage",
+            descriptionEn: "Fresh, bold, timeless",
+            descriptionPt: "Fresco, ousado, atemporal"
+        },
+        { 
+            image: "KANO-PAI/WhatsAppImage4.jpeg",
+            nameEn: "Carolina Herrera Good Girl", 
+            namePt: "Carolina Herrera Good Girl",
+            descriptionEn: "Elegant, sensual, addictive",
+            descriptionPt: "Elegante, sensual, viciante"
+        },
+        { 
+            image: "KANO-PAI/WhatsAppImage3.jpeg",
+            nameEn: "MFK Baccarat Rouge 540", 
+            namePt: "MFK Baccarat Rouge 540",
+            descriptionEn: "Unisex, amber, floral",
+            descriptionPt: "Unissex, âmbar, floral"
+        },
+        { 
+            image: "KANO-PAI/WhatsAppImage5.jpeg",
+            nameEn: "YSL Black Opium", 
+            namePt: "YSL Black Opium",
+            descriptionEn: "Dark, intense, captivating",
+            descriptionPt: "Escuro, intenso, cativante"
+        },
+        { 
+            image: "KANO-PAI/WhatsAppImage6.jpeg",
+            nameEn: "Creed Aventus", 
+            namePt: "Creed Aventus",
+            descriptionEn: "Fruity, smoky, powerful",
+            descriptionPt: "Frutado, defumado, poderoso"
+        },
+		{ 
+            image: "KANO-PAI/WhatsAppImage7.jpeg",
+            nameEn: "Creed Aventus", 
+            namePt: "Creed Aventus",
+            descriptionEn: "Fruity, smoky, powerful",
+            descriptionPt: "Frutado, defumado, poderoso"
+        },
+		{ 
+            image: "KANO-PAI/WhatsAppImage8.jpeg",
+            nameEn: "Creed Aventus", 
+            namePt: "Creed Aventus",
+            descriptionEn: "Fruity, smoky, powerful",
+            descriptionPt: "Frutado, defumado, poderoso"
+        }
+    ];
+
+    function buildGallery(lang) {
+        const container = document.getElementById("galleryGrid");
+        if(!container) return;
+        container.innerHTML = "";
+        
+        galleryItems.forEach((item, idx) => {
+            const card = document.createElement("div");
+            card.className = "gallery-card";
+            
+            const imgDiv = document.createElement("div");
+            imgDiv.className = "gallery-img";
+            
+            // Create actual image element
+            const img = document.createElement("img");
+            img.src = item.image;
+            img.alt = lang === 'en' ? item.nameEn : item.namePt;
+            img.style.width = "100%";
+            img.style.height = "100%";
+            img.style.objectFit = "cover";
+            img.style.borderRadius = "20px";
+            
+            // Handle image loading error - show fallback
+            img.onerror = function() {
+                this.style.display = "none";
+                imgDiv.style.background = "linear-gradient(145deg, #332e3c, #1e1b24)";
+                imgDiv.style.display = "flex";
+                imgDiv.style.alignItems = "center";
+                imgDiv.style.justifyContent = "center";
+                imgDiv.style.fontSize = "3rem";
+                imgDiv.innerHTML = "📷";
+            };
+            
+            imgDiv.appendChild(img);
+            
+            const caption = document.createElement("div");
+            caption.className = "gallery-caption";
+            caption.innerHTML = `<strong>${lang === 'en' ? item.nameEn : item.namePt}</strong><br>
+                                <small style="color:#aa9f77;">${lang === 'en' ? item.descriptionEn : item.descriptionPt}</small>`;
+            
+            card.appendChild(imgDiv);
+            card.appendChild(caption);
+            
+            card.addEventListener("click", () => {
+                const modal = document.getElementById("imageModal");
+                let existingDiv = document.getElementById("modalDynamic");
+                if(existingDiv) existingDiv.remove();
+                
+                const contentDiv = document.createElement("div");
+                contentDiv.id = "modalDynamic";
+                contentDiv.style.background = "#1f1c28";
+                contentDiv.style.padding = "2rem";
+                contentDiv.style.borderRadius = "40px";
+                contentDiv.style.textAlign = "center";
+                contentDiv.style.border = "2px solid #e5b85c";
+                contentDiv.style.maxWidth = "90vw";
+                contentDiv.style.maxHeight = "90vh";
+                contentDiv.style.overflow = "auto";
+                
+                contentDiv.innerHTML = `
+                    <img src="${item.image}" alt="${lang === 'en' ? item.nameEn : item.namePt}" 
+                         style="max-width: 100%; max-height: 60vh; border-radius: 20px; object-fit: contain;">
+                    <h3 style="color:#e5b85c; margin-top:1rem;">${lang === 'en' ? item.nameEn : item.namePt}</h3>
+                    <p style="color:#cdc2b0;">${lang === 'en' ? item.descriptionEn : item.descriptionPt}</p>
+                    <p style="color:#aa9f77; margin-top:0.5rem;">50ml• Premium Blend</p>
+                `;
+                
+                modal.appendChild(contentDiv);
+                modal.style.display = "flex";
+                
+                const closeSpan = document.querySelector(".close-modal");
+                const closeModal = () => {
+                    modal.style.display = "none";
+                    if(document.getElementById("modalDynamic")) document.getElementById("modalDynamic").remove();
+                };
+                closeSpan.onclick = closeModal;
+                modal.onclick = (e) => { if(e.target === modal) closeModal(); };
+            });
+            
+            container.appendChild(card);
+        });
+    }
+    // helper render product grids
+    function renderProductGrid(containerId, items) {
+        const container = document.getElementById(containerId);
+        if(!container) return;
+        container.innerHTML = "";
+        items.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "perfume-card";
+            card.innerHTML = `
+                <div class="perfume-name">${item}</div>
+                <div class="perfume-brand">INSPIRED FRAGRANCE</div>
+                <div class="inspire-badge">🌟 ROLL-ON 50ml</div>
+                <div class="product-type">Hydrating formula • long lasting</div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    // Language content mapping (EN/PT)
+    const translations = {
+        en: {
+            maleTitle: "⚡ MASCULINE COLLECTION",
+            femaleTitle: "🌸 FEMININE COLLECTION",
+            unisexTitle: "🌀 UNISEX & NICHE",
+            galleryTitle: "📸 PERFUME GALLERY",
+            tagline: "ELEVATE YOUR SPACE • ROLL-ON LUXURY",
+            badge: "✨ Premium oil roll-on • 50ml • Inspired by VERSACE-EROS ✨",
+            contactBtn: "CONTACT US ON WHATSAPP",
+            footer: "© KINA & KANO FRAGRANCES — Inspired luxury. Paraben-free formula with hyaluronate & aloe vera.\nTap contact to order or inquire.",
+            brandName: "KINA & KANO FRAGRANCES"
+        },
+        pt: {
+            maleTitle: "⚡ COLEÇÃO MASCULINA",
+            femaleTitle: "🌸 COLEÇÃO FEMININA",
+            unisexTitle: "🌀 UNISSEX & NICHO",
+            galleryTitle: "📸 GALERIA DE PERFUMES",
+            tagline: "ELEVE SEU ESPAÇO • LUXO ROLL-ON",
+            badge: "✨ Óleo premium roll-on • 50ml • Inspirado em VERSACE-EROS ✨",
+            contactBtn: "CONTATE-NOS NO WHATSAPP",
+            footer: "© KINA & KANO FRAGRANCES — Luxo inspirado. Fórmula sem parabenos com hialuronato e aloe vera.\nToque para pedidos ou informações.",
+            brandName: "KINA & KANO FRAGRANCES"
+        }
+    };
+
+    let currentLang = "en";
+
+    function updateLanguage(lang) {
+        currentLang = lang;
+        const t = translations[lang];
+        document.getElementById("maleSectionTitle").innerText = t.maleTitle;
+        document.getElementById("femaleSectionTitle").innerText = t.femaleTitle;
+        document.getElementById("unisexSectionTitle").innerText = t.unisexTitle;
+        document.getElementById("galleryTitle").innerText = t.galleryTitle;
+        document.getElementById("globalTagline").innerText = t.tagline;
+        document.getElementById("globalProductBadge").innerText = t.badge;
+        document.getElementById("contactBtnText").innerText = t.contactBtn;
+        document.getElementById("footerText").innerHTML = t.footer.replace(/\n/g,'<br>');
+        document.getElementById("brandFullName").innerText = t.brandName;
+        
+        // rebuild gallery with new language captions
+        buildGallery(lang);
+        // Also refresh product grids? They are product names fixed (no translation needed for perfume names)
+        // but we keep them.
+    }
+
+    // Set active language button style
+    function setActiveLangButton(lang) {
+        document.querySelectorAll(".lang-btn").forEach(btn => {
+            if(btn.getAttribute("data-lang") === lang) btn.classList.add("active");
+            else btn.classList.remove("active");
+        });
+    }
+
+    // Event listeners for language switcher
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const lang = btn.getAttribute("data-lang");
+            if(lang === "en") updateLanguage("en");
+            else updateLanguage("pt");
+            setActiveLangButton(lang);
+        });
+    });
+
+    // initialize grids
+    renderProductGrid("maleGrid", uniqueMale);
+    renderProductGrid("femaleGrid", femaleFragrances);
+    renderProductGrid("unisexGrid", unisexFragrances);
+    buildGallery("en");
+    updateLanguage("en"); // default english
+    
+    // Kinetic animation (K's linking and separating)
+    const logoDiv = document.getElementById("kineticLogo");
+    let animationState = "linked";
+    let intervalId = null;
+    function setLinkedState() {
+        logoDiv.classList.remove("separate");
+        logoDiv.classList.add("linked");
+        animationState = "linked";
+    }
+    function setSeparateState() {
+        logoDiv.classList.remove("linked");
+        logoDiv.classList.add("separate");
+        animationState = "separate";
+    }
+    function startKinetic() {
+        setLinkedState();
+        setTimeout(() => {
+            setSeparateState();
+            setTimeout(() => {
+                setLinkedState();
+                intervalId = setInterval(() => {
+                    if(animationState === "linked") setSeparateState();
+                    else setLinkedState();
+                }, 3200);
+            }, 2000);
+        }, 1800);
+    }
+    startKinetic();
+    logoDiv.addEventListener("click", () => {
+        if(intervalId) clearInterval(intervalId);
+        setSeparateState();
+        setTimeout(() => {
+            setLinkedState();
+            if(intervalId) clearInterval(intervalId);
+            intervalId = setInterval(() => {
+                if(animationState === "linked") setSeparateState();
+                else setLinkedState();
+            }, 3200);
+        }, 1000);
+    });
+
+    // WhatsApp integration (replace with actual number)
+    const whatsappNumber = "+258844870850";  // CHANGE to your real WhatsApp number (Brazil/Portugal example)
+    function sendWhatsApp() {
+        const msg = currentLang === 'en' 
+            ? "Hello! I'm interested in KINA FRAGRANCES premium roll-on perfumes. I would like to know more about the collections and place an order."
+            : "Olá! Estou interessado(a) nos perfumes roll-on premium da KINA FRAGRANCES. Gostaria de saber mais sobre as coleções e fazer um pedido.";
+        window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+    document.getElementById("contactWhatsappBtn").addEventListener("click", sendWhatsApp);
+    
+    // Modal close handler default
+    const modal = document.getElementById("imageModal");
+    const closeModalSpan = document.querySelector(".close-modal");
+    if(closeModalSpan) closeModalSpan.onclick = () => {
+        modal.style.display = "none";
+        const dyn = document.getElementById("modalDynamic");
+        if(dyn) dyn.remove();
+    };
+    window.onclick = (e) => { if(e.target === modal) { modal.style.display = "none"; const dyn = document.getElementById("modalDynamic"); if(dyn) dyn.remove(); } };
+</script>
+</body>
+</html>
