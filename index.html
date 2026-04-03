@@ -23,7 +23,7 @@
                 <span class="k-letter">K</span>
             </div>
             <div class="full-name" id="brandFullName">KINA &amp; KANO FRAGRANCES</div>
-            <div class="tagline" id="globalTagline">ELEVATE YOUR SPACE • ROLL-ON LUXURY</div>
+            <div class="tagline" id="globalTagline">ELEVATE YOUR SPACE • LUXURY</div>
         </div>
     </div>
 
@@ -259,7 +259,7 @@
             femaleTitle: "🌸 FEMININE COLLECTION",
             unisexTitle: "🌀 UNISEX & NICHE",
             galleryTitle: "📸 PERFUME GALLERY",
-            tagline: "ELEVATE YOUR SPACE • ROLL-ON LUXURY",
+            tagline: "ELEVATE YOUR SPACE • LUXURY",
             badge: "✨ Premium oil • 50ml • Inspired by VERSACE-EROS ✨",
             contactBtn: "CONTACT US ON WHATSAPP",
             footer: "© KINA & KANO FRAGRANCES — Inspired luxury. Paraben-free formula with hyaluronate & aloe vera.\nTap contact to order or inquire.",
@@ -369,8 +369,8 @@
     const whatsappNumber = "+258844870850";  // CHANGE to your real WhatsApp number (Brazil/Portugal example)
     function sendWhatsApp() {
         const msg = currentLang === 'en' 
-            ? "Hello! I'm interested in KINA FRAGRANCES premium roll-on perfumes. I would like to know more about the collections and place an order."
-            : "Olá! Estou interessado(a) nos perfumes roll-on premium da KINA FRAGRANCES. Gostaria de saber mais sobre as coleções e fazer um pedido.";
+            ? "Hello! I'm interested in KINA FRAGRANCES premium perfumes. I would like to know more about the collections and place an order."
+            : "Olá! Estou interessado(a) nos perfumes premium da KINA FRAGRANCES. Gostaria de saber mais sobre as coleções e fazer um pedido.";
         window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`, '_blank');
     }
     document.getElementById("contactWhatsappBtn").addEventListener("click", sendWhatsApp);
