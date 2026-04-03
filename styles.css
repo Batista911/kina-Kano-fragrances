@@ -238,11 +238,27 @@
             padding-left: 1.2rem;
         }
         .frag-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.8rem;
-            margin-bottom: 2rem;
-        }
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* Forces 2 columns on all screens */
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* For tablets and desktop - 3 columns */
+@media (min-width: 768px) {
+    .frag-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.8rem;
+    }
+}
+
+/* For very small phones - still 2 columns but smaller gap */
+@media (max-width: 480px) {
+    .frag-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+    }
+}
         .perfume-card {
             background: rgba(20, 18, 27, 0.7);
             backdrop-filter: blur(6px);
@@ -341,11 +357,19 @@
     }
     
     /* Fix gallery grid */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);  /* 2 columns on mobile */
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+@media (min-width: 768px) {
     .gallery-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 1rem;
+        grid-template-columns: repeat(4, 1fr);  /* 4 columns on desktop */
+        gap: 1.5rem;
     }
-    
+}
     /* Fix section titles */
     .section-title {
         font-size: 1.3rem;
@@ -437,5 +461,25 @@
     
     .section-title {
         font-size: 1.1rem;
+    }
+}
+/* Make cards compact on mobile */
+@media (max-width: 768px) {
+    .perfume-card {
+        padding: 0.8rem 0.5rem;
+    }
+    
+    .perfume-name {
+        font-size: 0.8rem;
+        word-break: break-word;
+    }
+    
+    .inspire-badge {
+        font-size: 0.55rem;
+        padding: 0.15rem 0.4rem;
+    }
+    
+    .product-type {
+        font-size: 0.5rem;
     }
 }
