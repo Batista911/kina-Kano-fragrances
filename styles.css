@@ -176,24 +176,22 @@
             transform: scale(1.02);
             border-color: #e5b85c;
         }
-        .gallery-img {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            object-fit: cover;
-            border-radius: 20px;
-            background: #2a262f;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            background: linear-gradient(145deg, #27232c, #1c1921);
-			
+       .gallery-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #27232c, #1c1921);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
 .gallery-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-        }
         .gallery-caption {
             text-align: center;
             margin-top: 12px;
@@ -322,3 +320,122 @@
             .container { padding: 1rem; }
             .section-title { font-size: 1.5rem; }
         }
+		/* Mobile Responsive Fixes */
+@media (max-width: 768px) {
+    .container {
+        padding: 0.8rem;
+    }
+    
+    /* Fix perfume name wrapping */
+    .perfume-name {
+        font-size: 1rem;
+        word-break: break-word;
+        white-space: normal;
+        line-height: 1.3;
+    }
+    
+    /* Fix grid for mobile */
+    .frag-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    
+    /* Fix gallery grid */
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 1rem;
+    }
+    
+    /* Fix section titles */
+    .section-title {
+        font-size: 1.3rem;
+        padding-left: 0.8rem;
+    }
+    
+    /* Fix brand name */
+    .full-name {
+        font-size: 0.9rem;
+        letter-spacing: 3px;
+    }
+    
+    /* Fix K letters animation */
+    .k-animation {
+        gap: 0.1rem;
+    }
+    
+    .kinetic-logo.separate .k-letter {
+        letter-spacing: 0.15em;
+        transform: translateX(3px) scale(1.02);
+    }
+    
+    /* Fix perfume card content */
+    .perfume-card {
+        padding: 1rem 0.6rem;
+    }
+    
+    .inspire-badge {
+        font-size: 0.6rem;
+        padding: 0.15rem 0.6rem;
+    }
+    
+    /* Fix product type badge */
+    .product-type {
+        font-size: 0.55rem;
+        white-space: normal;
+        word-break: break-word;
+        display: inline-block;
+        max-width: 100%;
+    }
+    
+    /* Fix gallery captions */
+    .gallery-caption {
+        font-size: 0.75rem;
+    }
+    
+    .gallery-caption strong {
+        font-size: 0.8rem;
+        display: block;
+        word-break: break-word;
+    }
+    
+    /* Fix WhatsApp button */
+    .whatsapp-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        gap: 8px;
+    }
+    
+    /* Fix language buttons */
+    .lang-btn {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.7rem;
+    }
+}
+
+/* For very small phones (below 480px) */
+@media (max-width: 480px) {
+    .frag-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    }
+    
+    .perfume-name {
+        font-size: 0.9rem;
+    }
+    
+    .full-name {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+    }
+    
+    .tagline {
+        font-size: 0.65rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+}
